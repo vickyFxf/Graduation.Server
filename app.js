@@ -5,15 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors=require('cors');
+var mongoose = require('mongoose');
 //引入路由配置模块
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var mongoose = require('mongoose');
 var app = express();
 
 //连接数据库
-// mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
+mongoose.connect('mongodb://localhost/Graduation', { useMongoClient: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));//视图引擎路径

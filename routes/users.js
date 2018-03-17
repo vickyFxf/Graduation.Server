@@ -7,7 +7,7 @@ var router = express.Router();
 var dataCtrl = require('../controller/user.controller');
 
 router.post('/data',dataCtrl.create);
-router.get('/data/:id',dataCtrl.get);
+router.get('/user/:id',dataCtrl.get);//单个用户查询
 router.post('/check',dataCtrl.checkLogin);
 router.put('/data/:id',dataCtrl.update);
 router.delete('/data/:id',dataCtrl.remove);
