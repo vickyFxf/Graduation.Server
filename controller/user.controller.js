@@ -2,7 +2,7 @@
  * 用户控制处理
  * Created by Vicky on 2018/03/11.
  */
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 const DateModle = require('../models/user.model');
 
 //增加用户

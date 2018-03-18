@@ -9,11 +9,11 @@ var mongoose = require('mongoose');
 //引入路由配置模块
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var subject = require('./routes/subject');
 var app = express();
 
 //连接数据库
-mongoose.connect('mongodb://localhost/Graduation', { useMongoClient: true });
+mongoose.connect('mongodb://localhost:27017/Graduation', { useMongoClient: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));//视图引擎路径
@@ -39,7 +39,7 @@ app.use(cors());
 //使用路由模块
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/subject', subject);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
