@@ -48,9 +48,9 @@ exports.update = function(req,res,next){
 }
 //查用户登录验证
 exports.checkLogin = function(req,res,next){
-    var name = req.body.name;
+    var _id = req.body._id;
     var password = req.body.password;
-    var data={name:name,password:password}
+    var data={_id:_id,password:password}
     DateModle.find(data, function (err, data) {
         if(data.length>0){
             res.json(data);
