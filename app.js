@@ -38,8 +38,8 @@ app.use(cors());
 // });
 //使用路由模块
 app.use('/', index);
-app.use('/users', users);
-app.use('/subject', subject);
+app.use('/User-Module', users);
+app.use('/Subject-Module', subject);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

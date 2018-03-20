@@ -9,9 +9,10 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
     subName:String,
-    subCreatUser:String,
     subSource:String,
     subCategory:String,
+    subIntroduction:String,
+    creatUserId:String,
     subTime:{ type: Date, default: Date.now },
     isAudit:Number,
 })
