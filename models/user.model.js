@@ -8,7 +8,7 @@ var mongoosePaginate = require('mongoose-paginate');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
-    id:Number,
+    id:String,
     permissions:Number,
     name:String,
     sex:Number,
@@ -21,5 +21,5 @@ var schema = new Schema({
 })
 
 schema.plugin(mongoosePaginate);
-var User=mongoose.model('Users',schema,'users')
+var User=mongoose.model('User',schema,'user')
 module.exports=User;

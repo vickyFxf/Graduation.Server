@@ -48,20 +48,22 @@ exports.update = function(req,res,next){
 }
 //查用户登录验证
 exports.checkLogin = function(req,res,next){
-    var _id = req.body._id;
+    var userId = req.body.id;
     var password = req.body.password;
-    var data={_id:_id,password:password}
-    DateModle.find(data, function (err, data) {
-        if(data.length>0){
+    var userInfo={id:userId,password:password}
+    console.log(userInfo);
+    DateModle.findOne(userInfo, function (err, data) {
+        if(data){
             res.json(data);
         }else{
-            res.json({"status":"404","msg":"用户名或密码错误"})
+            res.json({"msg":"用户名或密码错误","status":404});
         }
     })
 }
 //查用户详细信息
 exports.get = function(req,res,next){
     var id = req.params.id;
+    console.log(id);
     DateModle.findById(id, function (err, data) {
         res.json(data);
     })
