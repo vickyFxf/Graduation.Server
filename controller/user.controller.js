@@ -51,7 +51,6 @@ exports.checkLogin = function(req,res,next){
     var userId = req.body.id;
     var password = req.body.password;
     var userInfo={id:userId,password:password}
-    console.log(userInfo);
     DateModle.findOne(userInfo, function (err, data) {
         if(data){
             res.json(data);
