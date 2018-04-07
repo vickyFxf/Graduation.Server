@@ -48,9 +48,10 @@ exports.update = function(req,res,next){
 }
 //查用户登录验证
 exports.checkLogin = function(req,res,next){
-    var userId = req.body.id;
+    var userId = req.body.id;``
     var password = req.body.password;
-    var userInfo={id:userId,password:password}
+    var permissions = req.body.permissions;
+    var userInfo={id:userId,password:password,permissions:permissions}
     DateModle.findOne(userInfo, function (err, data) {
         if(data){
             res.json(data);
@@ -62,7 +63,6 @@ exports.checkLogin = function(req,res,next){
 //查用户详细信息
 exports.get = function(req,res,next){
     var id = req.params.id;
-    console.log(id);
     DateModle.findById(id, function (err, data) {
         res.json(data);
     })

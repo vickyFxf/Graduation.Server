@@ -21,8 +21,8 @@ exports.create = function(req,res,next){
 };
 //查所有课题列表
 exports.list = function(req,res,next){
-    var page = (req.body.page) ? req.body.page : 1;
-    var rows = (req.body.rows) ? req.body.rows : 10;
+    // var page = (req.body.page) ? req.body.page : 1;
+    // var rows = (req.body.rows) ? req.body.rows : 10;
     var queryCondition = {};
     if(req.body.creatUserId && req.body.creatUserId.trim().length>0){
         creatUserId = req.body.creatUserId;
