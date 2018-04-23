@@ -2,7 +2,7 @@
  * @Author: VickyFan 
  * @Date: 2018-04-09 11:09:46 
  * @Last Modified by: VickyFan
- * @Last Modified time: 2018-04-09 11:31:35
+ * @Last Modified time: 2018-04-23 09:47:51
  */
 var express = require('express');
 var path = require('path');
@@ -16,6 +16,7 @@ var mongoose = require('mongoose');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var subject = require('./routes/subject');
+var classification = require('./routes/classification');
 var app = express();
 //连接数据库
 mongoose.connect('mongodb://localhost:27017/Graduation', { useMongoClient: true });
@@ -43,6 +44,7 @@ app.use(cors());
 app.use('/', index);
 app.use('/User-Module', users);
 app.use('/Subject-Module', subject);
+app.use('/Class-Module', classification);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
