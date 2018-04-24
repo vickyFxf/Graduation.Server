@@ -1,8 +1,8 @@
 /*
  * @Author: VickyFan 
  * @Date: 2018-04-09 11:35:07 
- * @Last Modified by:   VickyFan 
- * @Last Modified time: 2018-04-09 11:35:07 
+ * @Last Modified by: VickyFan
+ * @Last Modified time: 2018-04-24 14:43:48
  */
 const DateModle = require('../models/user.model');
 //增加用户
@@ -25,7 +25,6 @@ exports.deletes = function (req, res, next) {
   } else {
     res.json({ "msg": "faild", "status": 404 });
   }
-}
 //删除某个用户
 exports.remove = function (req, res, next) {
   const id = req.params.id;
@@ -71,10 +70,16 @@ exports.list = function (req, res, next) {
   var page = (req.body.page) ? req.body.page : 1;
   var rows = (req.body.rows) ? req.body.rows : 10;
   var queryCondition = {};
-  if (req.body.name && req.body.name.trim().length > 0) {
-    name = req.body.name;
+  if (req.body.id && req.body.id.trim().length > 0) {
+    id = req.body.id;
     queryCondition = {
-      "name": new RegExp(name, 'i')
+      "id": new RegExp(id, 'i')
+    }
+  }
+  if (req.body.permission && req.body.permission.trim().length > 0) {
+    permission = req.body.permission;
+    queryCondition = {
+      "permission": new RegExp(permission, 'i')
     }
   }
   DateModle.find(queryCondition, (err, data) => {
