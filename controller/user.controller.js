@@ -62,8 +62,8 @@ exports.checkLogin = function(req,res,next){
 }
 //查用户详细信息
 exports.get = function(req,res,next){
-    var id = req.params.id;
-    DateModle.findById(id, function (err, data) {
+    var userId = req.params.id;
+    DateModle.findOne({id:userId}, function (err, data) {
         res.json(data);
     })
 }
