@@ -27,8 +27,8 @@ exports.deletes = function (req, res, next) {
   }}
 //删除某个用户
 exports.remove = function (req, res, next) {
-  const id = req.params.id;
-  DateModle.findByIdAndRemove(id, function (err, data) {
+  const _id = req.params._id;
+  DateModle.findByIdAndRemove(_id, function (err, data) {
     if (err) {
       res.json({ "msg": "faild", "status": 404 });
     } else {
@@ -70,18 +70,21 @@ exports.list = function (req, res, next) {
   var page = (req.body.page) ? req.body.page : 1;
   var rows = (req.body.rows) ? req.body.rows : 10;
   var queryCondition = {};
-  if (req.body.id && req.body.id.trim().length > 0) {
-    id = req.body.id;
+  if (req.body.permissions) {
+    var permissions = req.body.permissions;
     queryCondition = {
-      "id": new RegExp(id, 'i')
+      "permissions": permissions,
     }
   }
-  // if (req.body.permissions) {
-  //   permissions = req.body.permissions;
-  //   queryCondition = {
-  //     "permissions": new RegExp(permissions, 'i')
-  //   }
-  // }
+  if (req.body.id && req.body.permissions) {
+    var id = req.body.id;
+    var permissions = req.body.permissions;
+    queryCondition = {
+      "id": id,
+      "permissions": permissions,
+    }
+  }
+  console.log(queryCondition);
   DateModle.find(queryCondition, (err, data) => {
     if (err) {
       res.json({ "msg": "faild", "status": 404 });
