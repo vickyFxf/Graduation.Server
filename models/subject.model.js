@@ -13,6 +13,7 @@ var schema = new Schema({
   subCategory: String,
   subIntroduction: String,
   creatUserId: String,
+  creatUserName:String,
   subTime: { type: Date, default: Date.now },
   isAudit: Number,
 })
