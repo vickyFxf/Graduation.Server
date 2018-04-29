@@ -60,10 +60,21 @@ exports.checkLogin = function (req, res, next) {
 }
 //获取用户基本信息
 exports.get = function (req, res, next) {
-  var id = req.params.id;
-  DateModle.findById(id, function (err, data) {
-    res.json(data);
-  })
+  var queryCondition = {};
+  if (req.body.id) {
+    var id = req.body.id;
+    queryCondition = {
+      "id": id,
+    }
+  }
+  console.log(queryCondition);
+  DateModle.find(queryCondition, (err, data) => {
+    if (err) {
+      res.json({ "msg": "faild", "status": 404 });
+    } else {
+      res.json(data);
+    }
+  }).sort({ _id: -1 });
 }
 //条件查询所有用户列表
 exports.list = function (req, res, next) {

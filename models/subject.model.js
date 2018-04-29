@@ -10,11 +10,11 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
   subName: String,
   subSource: String,
-  subCategory: String,
-  subIntroduction: String,
+  subCategory: String,                
+  subIntroduction: String,                                                                                                  
   creatUserId: String,
-  creatUserName:String,
-  subTime: { type: Date, default: Date.now },
+  creatUserName:String,                    
+  subTime: { type: Date, default: Date.now },                                      
   isAudit: Number,
 })
 schema.plugin(mongoosePaginate);

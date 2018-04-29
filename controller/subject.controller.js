@@ -27,6 +27,12 @@ exports.list = function (req, res, next) {
       "creatUserId": new RegExp(creatUserId, 'i')
     }
   }
+  if(req.body.isAudit){
+    isAudit = req.body.isAudit;
+    queryCondition = {
+      "isAudit": isAudit
+    }
+  }
   DateModle.find(queryCondition, (err, data) => {
     if (err) {
       res.json({ "msg": "faild", "status": 404 });

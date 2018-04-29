@@ -51,6 +51,14 @@ exports.list = function (req, res, next) {
     }
   }).sort({ _id: -1 });
 }
+//获取某个分类详情
+exports.get = function (req, res, next) {
+  var _id = req.params._id;
+  DateModle.findById(_id, function (err, data) {
+    console.log(res.json(data));
+    res.json(data);
+  })
+}
 
 
 
