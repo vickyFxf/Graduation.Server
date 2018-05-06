@@ -12,11 +12,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors=require('cors');
 var mongoose = require('mongoose');
+var fs=require('fs');
+var multer=require('multer');
 //引入路由配置模块
 var index = require('./routes/index');
 var users = require('./routes/users');
 var subject = require('./routes/subject');
 var classification = require('./routes/classification');
+var upload = require('./routes/upload');
 var app = express();
 //连接数据库
 mongoose.connect('mongodb://localhost:27017/Graduation', { useMongoClient: true });
@@ -45,7 +48,9 @@ app.use('/', index);
 app.use('/User-Module', users);
 app.use('/Subject-Module', subject);
 app.use('/Class-Module', classification);
+app.use('/Upload-Module', upload);
 // catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
