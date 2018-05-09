@@ -33,6 +33,12 @@ exports.list = function (req, res, next) {
       "isAudit": isAudit
     }
   }
+  if(req.body.studentId){
+    studentId = req.body.studentId;
+    queryCondition = {
+      "studentId": studentId
+    }
+  }
   DateModle.find(queryCondition, (err, data) => {
     if (err) {
       res.json({ "msg": "faild", "status": 404 });

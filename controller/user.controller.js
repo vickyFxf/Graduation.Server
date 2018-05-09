@@ -39,8 +39,8 @@ exports.remove = function (req, res, next) {
 //修改用户信息
 exports.update = function (req, res, next) {
   //记住此处返回来的值是修改之前的值
-  var id = req.params.id;
-  DateModle.findByIdAndUpdate(id, { $set: req.body }, { new: false })
+  var _id = req.params._id;
+  DateModle.findByIdAndUpdate(_id, { $set: req.body }, { new: false })
     .then(data => {
       res.json(data);
     })
@@ -49,7 +49,8 @@ exports.update = function (req, res, next) {
 exports.checkLogin = function (req, res, next) {
   var userId = req.body.id;
   var password = req.body.password;
-  var userInfo = { id: userId, password: password }
+  var permissions = req.body.permissions;
+  var userInfo = { id: userId, password: password ,permissions:permissions}
   DateModle.findOne(userInfo, function (err, data) {
     if (data) {
       res.json(data);
@@ -67,7 +68,6 @@ exports.get = function (req, res, next) {
       "id": id,
     }
   }
-  console.log(queryCondition);
   DateModle.find(queryCondition, (err, data) => {
     if (err) {
       res.json({ "msg": "faild", "status": 404 });
@@ -95,7 +95,6 @@ exports.list = function (req, res, next) {
       "permissions": permissions,
     }
   }
-  console.log(queryCondition);
   DateModle.find(queryCondition, (err, data) => {
     if (err) {
       res.json({ "msg": "faild", "status": 404 });

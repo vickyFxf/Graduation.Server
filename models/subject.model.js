@@ -13,9 +13,12 @@ var schema = new Schema({
   subCategory: String,                
   subIntroduction: String,                                                                                                  
   creatUserId: String,
-  creatUserName:String,                    
+  creatUserName:String,
+  studentId:String,
+  studentName:String,                    
   subTime: { type: Date, default: Date.now },                                      
   isAudit: Number,
+  selectedBy:Number,//1暂被选，2被选，3未被选
 })
 schema.plugin(mongoosePaginate);
 var Subject = mongoose.model('Subject', schema, 'subject')
