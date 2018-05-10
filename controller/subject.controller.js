@@ -39,6 +39,15 @@ exports.list = function (req, res, next) {
       "studentId": studentId
     }
   }
+  //获取我的学生列表
+  if(req.body.creatUserId&&req.body.isAudit){
+    creatUserId = req.body.creatUserId;
+    isAudit = req.body.isAudit;
+    queryCondition = {
+      "creatUserId": new RegExp(creatUserId, 'i'),
+      "isAudit": isAudit
+    }
+  }
   DateModle.find(queryCondition, (err, data) => {
     if (err) {
       res.json({ "msg": "faild", "status": 404 });

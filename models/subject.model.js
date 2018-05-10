@@ -19,6 +19,7 @@ var schema = new Schema({
   subTime: { type: Date, default: Date.now },                                      
   isAudit: Number,
   selectedBy:Number,//1暂被选，2被选，3未被选
+  applyReason:String,//申请理由
 })
 schema.plugin(mongoosePaginate);
 var Subject = mongoose.model('Subject', schema, 'subject')
