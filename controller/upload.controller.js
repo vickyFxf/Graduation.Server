@@ -22,14 +22,13 @@ exports.upload = function(req,res,next){
         storage:storage
    }).single('myfile');
    upload(req,res,(err)=>{
-       console.log(req.file);
        req.file.isTemplate=1;
         const dataModel = new DataModel(req.file);
         dataModel.save()
             .then(data=>{
             res.json(data);
         })
-        return res.end('File is upload')
+        return res.end('上传成功')
    })
    
 };
