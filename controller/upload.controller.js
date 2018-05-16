@@ -22,7 +22,7 @@ exports.upload = function(req,res,next){
         storage:storage
    }).single('myfile');
    upload(req,res,(err)=>{
-       req.file.isTemplate=1;
+        req.file.isTemplate=1;
         const dataModel = new DataModel(req.file);
         dataModel.save()
             .then(data=>{
@@ -51,7 +51,7 @@ exports.downLoad = function(req,res,next){
             });
         }else{
             res.set("Content-type","text/html");
-            res.send("file not exist!");
+            res.send("文件模板还未上传!");
             res.end();
         }
     });

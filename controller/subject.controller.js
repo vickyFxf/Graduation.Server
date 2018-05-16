@@ -23,8 +23,10 @@ exports.list = function (req, res, next) {
   var queryCondition = {};
   if (req.body.creatUserId && req.body.creatUserId.trim().length > 0) {
     creatUserId = req.body.creatUserId;
+    subName = req.body.subName;
     queryCondition = {
-      "creatUserId": new RegExp(creatUserId, 'i')
+      "creatUserId": new RegExp(creatUserId, 'i'),
+      "subName" : new RegExp(subName, 'i')
     }
   }
   if(req.body.isAudit){
@@ -48,6 +50,7 @@ exports.list = function (req, res, next) {
       "isAudit": isAudit
     }
   }
+  console.log(queryCondition);
   DateModle.find(queryCondition, (err, data) => {
     if (err) {
       res.json({ "msg": "faild", "status": 404 });
