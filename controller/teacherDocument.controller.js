@@ -8,11 +8,11 @@ var mongoose = require('mongoose');
 var multer  = require('multer');
 const fs = require('fs');
 const path = require('path');
-const DataModel = require('../models/myDocument.model');
+const DataModel = require('../models/teacherDocument.model');
 //设置存储路径
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './myDocument')
+      cb(null, './teacherDocument')
     },
     //返回文件名
     filename: function (req, file, cb) {
@@ -44,7 +44,7 @@ exports.upload = function(req,res,next){
 exports.downLoad = function(req,res,next){
     // 实现文件下载 
     var fileName = req.params.fileName;
-    var filePath = 'F:\\Graduation.Server\\myDocument\\'+fileName;
+    var filePath = 'F:\\Graduation.Server\\teacherDocument\\'+fileName;
     console.log(filePath);
     fs.exists(filePath,function(exist) {
         if(exist){
@@ -69,23 +69,17 @@ exports.list = function (req, res, next) {
     var page = (req.body.page) ? req.body.page : 1;
     var rows = (req.body.rows) ? req.body.rows : 10;
     var queryCondition = {};
-    //获取我的所有任务书
-    if(req.body.docType&&req.body.studentId){
-      docType = req.body.docType;
-      studentId = req.body.studentId;
-      queryCondition = {
-        "docType": new RegExp(docType, 'i'),
-        "studentId": studentId
+   //获取教师所有文档
+   if(req.body.docType&&req.body.studentId&&req.body.teacherId){
+    docType = req.body.docType;
+    studentId = req.body.studentId;
+    teacherId=req.body.teacherId;
+    queryCondition = {
+      "docType": new RegExp(docType, 'i'),
+      "studentId": studentId,
+      'teacherId':teacherId
       }
     }
-    //获取我的所有文档
-    if(req.body.studentId&&!req.body.docType){
-      studentId=req.body.studentId;
-      queryCondition = {
-        "studentId": studentId
-      }
-    }
-    
     DataModel.find(queryCondition, (err, data) => {
       if (err) {
         res.json({ "msg": "faild", "status": 404 });

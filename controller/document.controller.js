@@ -30,12 +30,18 @@ exports.list = function (req, res, next) {
   var page = (req.body.page) ? req.body.page : 1;
   var rows = (req.body.rows) ? req.body.rows : 10;
   var queryCondition = {};
-  if (req.body.docStudentId && req.body.docName.trim().length > 0) {
+  if (req.body.docStudentId && req.body.docName) {
     docStudentId = req.body.docStudentId;
     docName=req.body.docName;
     queryCondition = {
       "docStudentId": new RegExp(docStudentId, 'i'),
       "docName":new RegExp(docName, 'i'),
+    }
+  }
+  if (req.body.docStudentId&& !req.body.docName) {
+    docStudentId = req.body.docStudentId;
+    queryCondition = {
+      "docStudentId": new RegExp(docStudentId, 'i'),
     }
   }
   DateModle.find(queryCondition, (err, data) => {

@@ -22,6 +22,7 @@ var classification = require('./routes/classification');
 var upload = require('./routes/upload');
 var document = require('./routes/document');
 var MyDocument = require('./routes/myDocument');
+var TeacherDocument = require('./routes/teacherDocument');
 var app = express();
 //连接数据库
 mongoose.connect('mongodb://localhost:27017/Graduation', { useMongoClient: true });
@@ -53,6 +54,7 @@ app.use('/Class-Module', classification);
 app.use('/Upload-Module', upload);
 app.use('/Document-Module', document);
 app.use('/MyDocument-Module', MyDocument);
+app.use('/TeacherDocument-Module', TeacherDocument);
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {
