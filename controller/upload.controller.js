@@ -17,10 +17,11 @@ var storage = multer.diskStorage({
   
 //上传模板文件
 exports.upload = function(req,res,next){
-   //实例化
+   //实例化，添加配置文件到multer对象
    var upload=multer({
         storage:storage
    }).single('myfile');
+   //single单文件上传，array多文件，fileds混合文件
    upload(req,res,(err)=>{
         req.file.isTemplate=1;
         const dataModel = new DataModel(req.file);
@@ -40,11 +41,14 @@ exports.downLoad = function(req,res,next){
     var filePath = 'F:\\Graduation.Server\\uploads\\'+fileName;
     fs.exists(filePath,function(exist) {
         if(exist){
+            //设置响应头，文件类型及文件描述
             res.set({
                 "Content-type":"application/octet-stream",
                 "Content-Disposition":"attachment;filename="+encodeURI(fileName)
             });
+            //创建可读流
             fReadStream = fs.createReadStream(filePath);
+            //分块传输，二进制方式写入客户端
             fReadStream.on("data",(chunk) => res.write(chunk,"binary"));
             fReadStream.on("end",function () {
                 res.end();
